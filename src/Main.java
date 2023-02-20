@@ -16,28 +16,38 @@ public class Main {
         for (int i = 0; i < TEXT.length(); i++) {
             if (Character.isLetter(TEXT.charAt(i))) {
                 if (!map.containsKey(TEXT.charAt(i))) {
+                    map.put(TEXT.charAt(i), 1);
+                } else {
+                    value = map.get(TEXT.charAt(i)) + 1;
                     map.put(TEXT.charAt(i), value);
                 }
             }
         }
+        Main.max(map);
+        Main.min(map);
+    }
+
+    public static void max(Map<Character, Integer> map) {
+        char c = 0;
         int max = -1;
-
-        for (Map.Entry<Character, Integer> ci : map.entrySet()) {
-            if (max < ci.getValue()) {
-                max = ci.getValue();
-                c = ci.getKey();
+        for (Map.Entry<Character, Integer> kv : map.entrySet()) {
+            if (max < kv.getValue()) {
+                max = kv.getValue();
+                c = kv.getKey();
             }
         }
-        System.out.println("Максимальное значение: " + c + ", равен " + max);
+        System.out.println("Максимальное значение: " + c + ", равное " + max);
+    }
 
+    public static void min(Map<Character, Integer> map) {
         int min = Integer.MAX_VALUE;
-
-        for (Map.Entry<Character, Integer> ci : map.entrySet()) {
-            if (min > ci.getValue()) {
-                min = ci.getValue();
-                c = ci.getKey();
+        char c = 0;
+        for (Map.Entry<Character, Integer> kv : map.entrySet()) {
+            if (min > kv.getValue()) {
+                min = kv.getValue();
+                c = kv.getKey();
             }
         }
-        System.out.println("Минимальное значение: " + c + ", равен " + min);
+        System.out.println("Минимальное значение: " + c + ", равное " + min);
     }
 }
